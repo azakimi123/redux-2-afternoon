@@ -15,6 +15,7 @@ module.exports = {
     res.redirect('http://localhost:3000')
   },
   userData(req, res) {
+    // console.log(req.session.user)
     const { user } = req.session;
     if (user) return res.status(200).send({ loggedIn: true, user });
     else return res.sendStatus(401)

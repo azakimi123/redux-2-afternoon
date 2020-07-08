@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 
 class DisplayPurchases extends Component {
 
-  componentDidMount= ()=> {
-    this.props.budgetData();
-  }
+  // componentDidMount= ()=> {
+  //   this.props.budgetData();
+  // }
   render() {
     let { purchases } = this.props;
     if (!purchases) purchases = [{ id: 1000, description: 'Ship', price: 1, category: 'Other' }]

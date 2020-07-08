@@ -25,6 +25,7 @@ class AddPurchase extends Component {
       if (num && category && description) {
         if (!addPurchase) return this.backup();
         addPurchase(num, description, category);
+        this.props.budgetData();
         this.setState({
           category: 'other',
           description: '',

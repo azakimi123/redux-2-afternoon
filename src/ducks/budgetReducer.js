@@ -16,6 +16,25 @@ export function requestBudgetData() {
     }
 }
 
+const ADD_PURCHASE = 'ADD_PURCHASE';
+
+export function addPurchase(price, description, category) {
+    let data = axios.post('/api/budget-data/purchase', {description, price, category}).then(res => res.data);
+    return {
+        type: ADD_PURCHASE,
+        payload: data
+    }
+}
+
+const REMOVE_PURCHASE = 'REMOVE_PURCHASE';
+export function removePurchase(id) {
+    let data = axios.delete(`/api/budget-data/purchase/${id}`).then(res => res.data);
+    return{
+        type: REMOVE_PURCHASE,
+        payload: data
+    }
+}
+
 
 
 export default function reducer(state = initialState, action) {
@@ -23,7 +42,15 @@ export default function reducer(state = initialState, action) {
     switch(type) {
         case REQUEST_BUDGET_DATA + '_PENDING':
             return {...state, loading: true};
+        case ADD_PURCHASE + '_PENDING':
+            return {...state, loading: true};
+        case REMOVE_PURCHASE + 'PENDING':
+            return {...state, loading: true};
         case REQUEST_BUDGET_DATA + '_FULFILLED':
+            return {...state, ...payload, loading: false};
+        case ADD_PURCHASE + 'FULFILLED':
+            return {...state, ...payload, loading: false};
+        case REMOVE_PURCHASE + 'FULFILLED':
             return {...state, ...payload, loading: false};
         default:
             return state;
